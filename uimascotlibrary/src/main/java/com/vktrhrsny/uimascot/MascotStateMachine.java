@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import java.util.logging.Handler;
 import java.util.logging.SocketHandler;
 
-class MascotStateMachine implements MascotState,Runnable, View.OnClickListener {
+public class MascotStateMachine implements MascotState,Runnable, View.OnClickListener {
 
     private MascotState state;
     private float screenWidth;
