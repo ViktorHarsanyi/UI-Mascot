@@ -92,7 +92,7 @@ public class GuideMode implements MascotState {
 
     @Override
     public void talk(String text) {
-                mascotStateMachine.setText(text);
+               // mascotStateMachine.setText(text);
     }
 
     @Override

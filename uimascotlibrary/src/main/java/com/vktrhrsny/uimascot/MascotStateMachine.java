@@ -6,8 +6,8 @@ import android.view.animation.Interpolator;
 
 import androidx.annotation.Nullable;
 
-import java.util.logging.Handler;
-import java.util.logging.SocketHandler;
+import android.os.Handler;
+
 
 public class MascotStateMachine implements MascotState,Runnable, View.OnClickListener {
 
@@ -26,6 +26,7 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
         this.screenWidth = screenWidth;
         this.interpolator = interpolator;
         this.duration = duration;
+        handler = new Handler(Looper.myLooper());
     }
 
     @Override
@@ -45,7 +46,7 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
 
     @Override
     public void talk(String text) {
-        state.talk(text);
+        //state.talk(text);
     }
 
     @Override
@@ -55,7 +56,7 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
 
     @Override
     public void run() {
-
+        handler.postDelayed(this,duration);
     }
 
     public void setState(int stateCode){
@@ -106,7 +107,7 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
             return this;
         }
 
-        public MascotStateMachine createStateMachine(){
+        public MascotStateMachine build(){
             return new MascotStateMachine(view,screenWidth,interpolator,duration);
         }
 
