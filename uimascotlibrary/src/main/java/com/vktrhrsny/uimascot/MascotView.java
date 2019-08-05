@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.content.res.AppCompatResources;
+
 public class MascotView extends LinearLayout {
 
     private TextView textView;
@@ -25,8 +27,8 @@ public class MascotView extends LinearLayout {
         @SuppressWarnings("ResourceAsColor")
         int valueColor = attributes.getColor(R.styleable.MascotView_textColor,
                 android.R.color.holo_orange_dark);
-
-        Drawable drawable = attributes.getDrawable(R.styleable.MascotView_imageResource);
+        int drawableId = attributes.getResourceId(R.styleable.MascotView_imageResource,-1);
+        Drawable drawable = AppCompatResources.getDrawable(context,drawableId);
 
         Drawable textBackground = attributes.getDrawable(R.styleable.MascotView_textDrawable);
 
