@@ -3,6 +3,7 @@ package com.vktrhrsny.uimascot;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.graphics.Path;
+import android.graphics.drawable.Animatable2;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -13,7 +14,7 @@ public class GuideMode implements MascotState {
     private MascotStateMachine mascotStateMachine;
     private Path path;
 
-    public static GuideMode getInstance(@Nullable MascotStateMachine mascotStateMachine){
+    static GuideMode getInstance(@Nullable MascotStateMachine mascotStateMachine){
         if(instance==null){
             synchronized (GuideMode.class){
                 if(instance==null){
@@ -30,7 +31,7 @@ public class GuideMode implements MascotState {
     }
 
     @Override
-    public void moveTo(View view) {
+    public void move(View view) {
         if(mascotStateMachine!=null) {
 
             int[] place = new int[2];
@@ -68,8 +69,8 @@ public class GuideMode implements MascotState {
 
                 @Override
                 public void onAnimationEnd(Animator animator) {
-                   // talk(cv.getTag().toString());
-                    talk("test");
+                    if(cv.getTag()!=null)
+                    talk(cv.getTag().toString());
                 }
 
                 @Override
@@ -86,17 +87,52 @@ public class GuideMode implements MascotState {
     }
 
     @Override
-    public void move() {
+    public void move(int x, int y) {
+        if(mascotStateMachine!=null) {
 
+            int[] place = new int[2];
+            int[] placeDestination = new int[]{x,y};
+            mascotStateMachine.getView().getLocationOnScreen(place);
+
+            int x1 = place[0];
+            int y1 = place[1];
+            int x0 = placeDestination[0];
+            int y0 = placeDestination[1];
+
+            float X = (float)(x0 + x1) / 3;
+            float Y = (float)(y0 + y1) / 3;
+
+            path.moveTo(x1, y1);
+            path.quadTo(X, Y, x0, y0);
+            Animator animator = ObjectAnimator.ofFloat(mascotStateMachine.getView(), View.X, View.Y, path);
+            animator.setDuration(mascotStateMachine.getDuration());
+            animator.setInterpolator(mascotStateMachine.getInterpolator());
+            animator.start();
+
+            path.reset();
+            if (mascotStateMachine.getView().getScaleX()==-1f)
+                mascotStateMachine.getView().setScaleX(1f);
+
+        }
+    }
+
+    @Override
+    public void animate(Animatable2 anim) {
+        if(!anim.isRunning()){
+            anim.start();
+        }else{
+            anim.stop();
+        }
     }
 
     @Override
     public void talk(String text) {
-               // mascotStateMachine.setText(text);
+        mascotStateMachine.setText(text);
     }
 
     @Override
     public void dispose() {
         instance = null;
     }
+
 }

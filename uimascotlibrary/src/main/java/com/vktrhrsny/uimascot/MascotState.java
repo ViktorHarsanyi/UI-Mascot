@@ -1,10 +1,14 @@
 package com.vktrhrsny.uimascot;
 
+import android.graphics.drawable.Animatable2;
 import android.view.View;
 
+import androidx.annotation.Nullable;
+
 public interface MascotState {
-    void moveTo(View view);
-    void move();
+    void move(@Nullable View view);
+    void move(int x, int y);
+    void animate(Animatable2 anim);
     void talk(String text);
     void dispose();
 }
