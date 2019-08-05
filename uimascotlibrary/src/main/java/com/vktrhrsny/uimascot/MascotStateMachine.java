@@ -78,7 +78,7 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
                 break;
             case RANDOM_MODE:
                 state = RandomMoveMode.getInstance(this);
-
+                break;
 
         }
     }

@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.animation.OvershootInterpolator;
 
 import com.vktrhrsny.uimascot.MascotStateMachine;
+import com.vktrhrsny.uimascot.MascotView;
 
 public class MainActivity extends AppCompatActivity {
-
+    MascotStateMachine mascot;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,13 +20,25 @@ public class MainActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         int width = displayMetrics.widthPixels;
-        MascotStateMachine mascot = new MascotStateMachine.Builder(findViewById(R.id.mascot),width)
+        mascot = new MascotStateMachine.Builder(findViewById(R.id.msct),width)
                 .setInterpolator(new OvershootInterpolator())
                 .setDuration(2000L)
-                .createStateMachine();
-
-        mascot.setState(MascotStateMachine.GUIDE_MODE);
-        mascot.moveTo(findViewById(R.id.textView));
+                .build();
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mascot.dispose();
+    }
+
+    public void move(View view) {
+
+        mascot.setState(MascotStateMachine.GUIDE_MODE);
+        mascot.move(findViewById(R.id.textView));
+
+    }
+
+
 }
