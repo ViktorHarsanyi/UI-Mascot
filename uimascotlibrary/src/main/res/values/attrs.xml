@@ -2,7 +2,7 @@
 <resources>
     <declare-styleable name="MascotView">
         <attr name="textColor" format="color"/>
-        <attr name="imageResource" format="reference"/>
-        <attr name="textDrawable" format="reference"/>
+        <attr name="imageResource" format="integer"/>
+        <attr name="textDrawable" format="integer"/>
     </declare-styleable>
 </resources>
