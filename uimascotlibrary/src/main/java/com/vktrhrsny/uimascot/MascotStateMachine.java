@@ -67,8 +67,11 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
 
     @Override
     public void run() {
-        if(state instanceof RandomMoveMode)
-        handler.postDelayed(this,duration);
+        if(state instanceof RandomMoveMode) {
+            move(null);
+            handler.postDelayed(this, duration);
+        }else
+            handler.removeCallbacks(this);
     }
 
     public void setState(int stateCode){
