@@ -5,6 +5,8 @@ import android.animation.ObjectAnimator;
 import android.graphics.Path;
 import android.graphics.drawable.Animatable2;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -127,7 +129,8 @@ public class GuideMode implements MascotState {
 
     @Override
     public void talk(String text) {
-        mascotStateMachine.setText(text);
+       if(mascotStateMachine.getView() instanceof TextView)
+           ((TextView) mascotStateMachine.getView()).setText(text);
     }
 
     @Override
