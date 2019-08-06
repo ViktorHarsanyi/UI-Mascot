@@ -50,7 +50,7 @@ public class IdleMode implements MascotState {
             float X = (float)(x0 + x1) / 3;
             float Y = (float)(y0 + y1) / 3;
 
-            RectF viewRect = new RectF(x0,y0,view.getWidth(),view.getHeight());
+            RectF viewRect = new RectF(X,Y,view.getWidth(),view.getHeight());
 
             path.moveTo(x1, y1);
             path.arcTo(viewRect,270,-180,true);
