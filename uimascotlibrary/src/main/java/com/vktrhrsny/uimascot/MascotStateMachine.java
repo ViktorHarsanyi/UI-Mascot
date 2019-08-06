@@ -1,6 +1,5 @@
 package com.vktrhrsny.uimascot;
 
-import android.graphics.drawable.Animatable2;
 import android.os.Looper;
 import android.view.View;
 import android.view.animation.Interpolator;
@@ -59,8 +58,8 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
     }
 
     @Override
-    public void animate(Animatable2 anim) {
-        state.animate(anim);
+    public void animate(int animationCode) {
+        state.animate(animationCode);
     }
 
     @Override
@@ -72,15 +71,17 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
     public void dispose() {
         if(state!=null)
         state.dispose();
+        handler.removeCallbacks(this);
     }
 
     @Override
     public void run() {
-        if(state instanceof RandomMoveMode) {
-            move(null);
-            handler.postDelayed(this, duration);
-        }else
-            handler.removeCallbacks(this);
+        if(state instanceof RandomMoveMode)
+            state.move(null);
+        if(isLooping)
+            state.animate(animationCode);
+
+        handler.postDelayed(this, duration);
     }
 
     public void setState(int stateCode){

@@ -1,14 +1,10 @@
 package com.vktrhrsny.uimascot;
 
-import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.graphics.Path;
-import android.graphics.drawable.Animatable2;
 import android.view.View;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
-
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomMoveMode implements MascotState {
@@ -106,8 +102,18 @@ public class RandomMoveMode implements MascotState {
     }
 
     @Override
-    public void animate(Animatable2 anim) {
-
+    public void animate(int animCode) {
+        switch(animCode) {
+            case -1:
+            case 1:
+                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).rotation(360 * animCode);
+                break;
+            case 2:
+            case -2:
+                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).scaleX(animCode);
+                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).scaleY(animCode);
+                break;
+        }
     }
 
     @Override

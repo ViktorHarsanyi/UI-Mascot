@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 public interface MascotState {
     void move(@Nullable View view);
     void move(int x, int y);
-    void animate(Animatable2 anim);
+    void animate(int animCode);
     void talk(String text);
     void dispose();
 }
