@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.animation.OvershootInterpolator;
 
 import com.vktrhrsny.uimascot.MascotStateMachine;
-import com.vktrhrsny.uimascot.MascotView;
+
 
 public class MainActivity extends AppCompatActivity {
     MascotStateMachine mascot;
@@ -20,10 +20,13 @@ public class MainActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         int width = displayMetrics.widthPixels;
-        mascot = new MascotStateMachine.Builder(findViewById(R.id.msct),width)
+        mascot = new MascotStateMachine.Builder(findViewById(R.id.mascot),width)
                 .setInterpolator(new OvershootInterpolator())
                 .setDuration(2000L)
+                .setMirrored(false)
                 .build();
+        mascot.setState(MascotStateMachine.IDLE_MODE);
+
 
     }
 
@@ -35,8 +38,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void move(View view) {
 
-        mascot.setState(MascotStateMachine.GUIDE_MODE);
+
         mascot.move(findViewById(R.id.textView));
+        //mascot.move(100,100);
+        //mascot.run();
+
+        mascot.talk("fuck");
 
     }
 
