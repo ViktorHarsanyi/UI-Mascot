@@ -7,24 +7,24 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 
-public class GuideMode implements MascotState {
+public class TagMode implements MascotState {
     
-    private static GuideMode instance = null;
+    private static TagMode instance = null;
     private MascotStateMachine mascotStateMachine;
     private Path path;
 
-    static GuideMode getInstance(@Nullable MascotStateMachine mascotStateMachine){
+    static TagMode getInstance(@Nullable MascotStateMachine mascotStateMachine){
         if(instance==null){
-            synchronized (GuideMode.class){
+            synchronized (TagMode.class){
                 if(instance==null){
-                    instance = new GuideMode(mascotStateMachine);
+                    instance = new TagMode(mascotStateMachine);
                 }
             }
         }
         return instance;
     }
 
-    private GuideMode(MascotStateMachine mascotStateMachine) {
+    private TagMode(MascotStateMachine mascotStateMachine) {
         this.mascotStateMachine = mascotStateMachine;
         path = new Path();
     }
@@ -68,7 +68,7 @@ public class GuideMode implements MascotState {
 
                 @Override
                 public void onAnimationEnd(Animator animator) {
-                    if(cv.getTag()!=null)
+                    //if(cv.getTag()!=null)
                     talk(cv.getTag().toString());
                 }
 
@@ -116,16 +116,15 @@ public class GuideMode implements MascotState {
     }
 
     @Override
-    public void animate(int animCode) {
-        switch(animCode) {
-            case -1:
+    public void animate() {
+        switch(mascotStateMachine.getAnimationCode()) {
             case 1:
-                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).rotation(360 * animCode);
+            case -1:
+                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).rotation(360*mascotStateMachine.getAnimationCode());
                 break;
             case 2:
-            case -2:
-                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).scaleX(animCode);
-                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).scaleY(animCode);
+                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).scaleX(2);
+                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).scaleY(2);
                 break;
         }
     }

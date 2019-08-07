@@ -20,14 +20,15 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
     private boolean isMirrored, isLooping;
     private int animationCode;
 
-    public static final int GUIDE_MODE = 1;
+    public static final int TAG_MODE = 1;
     public static final int RANDOM_MODE = 2;
     public static final int IDLE_MODE = 3;
 
     public static final int ROTATE_CW = 1;
     public static final int ROTATE_CCW = -1;
     public static final int SCALE_UP = 2;
-    public static final int SCALE_DOWN = -2;
+
+
 
     private MascotStateMachine(View view,float screenWidth,Interpolator interpolator,Long duration,boolean isMirrored,int animationCode,boolean isLooping){
 
@@ -58,8 +59,8 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
     }
 
     @Override
-    public void animate(int animationCode) {
-        state.animate(animationCode);
+    public void animate() {
+        state.animate();
     }
 
     @Override
@@ -76,18 +77,20 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
 
     @Override
     public void run() {
-        if(state instanceof RandomMoveMode)
+        if(state instanceof RandomMoveMode || state instanceof IdleMode)
             state.move(null);
         if(isLooping)
-            state.animate(animationCode);
+            state.animate();
 
         handler.postDelayed(this, duration);
     }
 
     public void setState(int stateCode){
+        if(state!=null)
+            state.dispose();
         switch (stateCode){
-            case GUIDE_MODE:
-                state = GuideMode.getInstance(this);
+            case TAG_MODE:
+                state = TagMode.getInstance(this);
                 break;
             case RANDOM_MODE:
                 state = RandomMoveMode.getInstance(this);
@@ -116,6 +119,8 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
     float getScreenWidth(){return screenWidth;}
 
     boolean getMirrored(){return isMirrored;}
+
+    int getAnimationCode(){return animationCode;}
 
     public static class Builder{
 
