@@ -23,9 +23,10 @@ public class MainActivity extends AppCompatActivity {
         mascot = new MascotStateMachine.Builder(findViewById(R.id.mascot),width)
                 .setInterpolator(new OvershootInterpolator())
                 .setDuration(2000L)
+                .setAnimationType(MascotStateMachine.SCALE_UP,true)
                 .setMirrored(false)
                 .build();
-        mascot.setState(MascotStateMachine.IDLE_MODE);
+        mascot.setState(MascotStateMachine.TAG_MODE);
 
 
     }
@@ -33,19 +34,38 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        //dispose to survive orientation change and activity/fragment navigation
         mascot.dispose();
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        /*call run() for:
+            +looping animation if isLoop true
+            +Idle Mode to move around specified view or point
+            +Random Mode to move around the screen
+        */
+        mascot.run();
+    }
+
     public void move(View view) {
-
-
         mascot.move(findViewById(R.id.textView));
-        //mascot.move(100,100);
-        //mascot.run();
-
-        mascot.talk("fuck");
-
     }
 
 
+    public void moveTo100(View view) {
+        mascot.move(100,100);
+    }
+
+    //if the subject view is instance of TextView
+    //otherwise call ignored
+    public void talk(View view){
+        mascot.talk("Something to say");
+    }
+
+
+    public void animate(View view){
+        mascot.animate();
+    }
 }

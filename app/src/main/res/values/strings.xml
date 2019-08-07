@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">UIMascotExample</string>
+    <string name="move_to_view">Move to View</string>
+    <string name="move_to_100_100">Move to 100/100</string>
+    <string name="text">Text</string>
+    <string name="trigger_animation">Trigger animation</string>
 </resources>

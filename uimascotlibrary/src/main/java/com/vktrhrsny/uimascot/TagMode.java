@@ -58,8 +58,7 @@ public class TagMode implements MascotState {
             if (mascotStateMachine.getView().getScaleX()==-1f)
                 mascotStateMachine.getView().setScaleX(1f);
 
-                final String textString = view.getTag().toString();
-
+            final View v = view;
             animator.addListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animator) {
@@ -68,8 +67,10 @@ public class TagMode implements MascotState {
 
                 @Override
                 public void onAnimationEnd(Animator animator) {
-
-                    talk(textString);
+                    if(v.getTag()!=null)
+                    talk(v.getTag().toString());
+                    else
+                    talk("...");
                 }
 
                 @Override
