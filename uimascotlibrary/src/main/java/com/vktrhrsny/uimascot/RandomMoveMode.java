@@ -34,7 +34,7 @@ public class RandomMoveMode implements MascotState {
     public void move(@Nullable View view) {
 
         if(mascotStateMachine!=null) {
-
+            talk("");
             int[] hely = new int[2];
             mascotStateMachine.getView().getLocationOnScreen(hely);
 
@@ -70,17 +70,17 @@ public class RandomMoveMode implements MascotState {
     @Override
     public void move(int x, int y) {
         if(mascotStateMachine!=null) {
-
+            talk("");
             int[] place = new int[2];
             mascotStateMachine.getView().getLocationOnScreen(place);
 
             int x1 = place[0];
             int y1 = place[1];
 
-            int x0 = ThreadLocalRandom.current().nextInt( x1 + mascotStateMachine.getView().getWidth(),
-                    x);
-            int y0 = ThreadLocalRandom.current().nextInt(y1 + mascotStateMachine.getView().getWidth(),
-                    y);
+            int x0 = ThreadLocalRandom.current().nextInt( x1 ,
+                    x1+x);
+            int y0 = ThreadLocalRandom.current().nextInt(y1,
+                    y1+y);
 
             float X = (float) (x0 + x1) / 3;
             float Y = (float) (y0 + y1) / 3;
@@ -109,9 +109,23 @@ public class RandomMoveMode implements MascotState {
                 mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).rotation(360*mascotStateMachine.getAnimationCode());
                 break;
             case 2:
-                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).scaleX(2);
-                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).scaleY(2);
+                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).scaleX(2).scaleY(2)
+                        .withEndAction(new Runnable() {
+                            @Override
+                            public void run() {
+                                mascotStateMachine.getView().animate()
+                                        .setDuration(mascotStateMachine.getDuration()/2)
+                                        .scaleX(1)
+                                        .scaleY(1);
+                            }
+                        });
+
                 break;
+            default:
+                mascotStateMachine.getView().animate()
+                        .setDuration(mascotStateMachine.getDuration()/2)
+                        .scaleX(1)
+                        .scaleY(1);
         }
     }
 

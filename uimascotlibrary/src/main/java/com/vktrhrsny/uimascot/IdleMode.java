@@ -33,7 +33,7 @@ public class IdleMode implements MascotState {
     @Override
     public void move(@Nullable View view) {
         if(mascotStateMachine!=null&&view!=null){
-
+            talk("");
             int[] place = new int[2];
             int[] placeView = new int[2];
             mascotStateMachine.getView().getLocationOnScreen(place);
@@ -54,39 +54,13 @@ public class IdleMode implements MascotState {
             path.reset();
             if (mascotStateMachine.getView().getScaleX()==-1f)
                 mascotStateMachine.getView().setScaleX(1f);
-
-            final View cv = view;
-
-            animator.addListener(new Animator.AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animator) {
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    if(cv.getTag()!=null)
-                        talk(cv.getTag().toString());
-                }
-
-                @Override
-                public void onAnimationCancel(Animator animator) {
-
-                }
-
-                @Override
-                public void onAnimationRepeat(Animator animator) {
-
-                }
-            });
-
         }
     }
 
     @Override
     public void move(int x, int y) {
         if(mascotStateMachine!=null) {
-
+            talk("");
             int[] place = new int[2];
             int[] placeDestination = new int[]{x,y};
             mascotStateMachine.getView().getLocationOnScreen(place);

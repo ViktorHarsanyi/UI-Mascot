@@ -40,7 +40,6 @@ public class TagMode implements MascotState {
             int x1 = place[0];
             int y1 = place[1];
 
-
             int x0 = placeView[0];
             int y0 = placeView[1];
 
@@ -89,7 +88,7 @@ public class TagMode implements MascotState {
     @Override
     public void move(int x, int y) {
         if(mascotStateMachine!=null) {
-
+            talk("");
             int[] place = new int[2];
             int[] placeDestination = new int[]{x,y};
             mascotStateMachine.getView().getLocationOnScreen(place);
