@@ -30,7 +30,7 @@ public class TagMode implements MascotState {
     }
 
     @Override
-    public void move(View view) {
+    public void move(final View view) {
         if(mascotStateMachine!=null) {
 
             int[] place = new int[2];
@@ -58,7 +58,7 @@ public class TagMode implements MascotState {
             if (mascotStateMachine.getView().getScaleX()==-1f)
                 mascotStateMachine.getView().setScaleX(1f);
 
-            final View cv = view;
+
 
             animator.addListener(new Animator.AnimatorListener() {
                 @Override
@@ -69,7 +69,7 @@ public class TagMode implements MascotState {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     //if(cv.getTag()!=null)
-                    talk(cv.getTag().toString());
+                    talk(view.getTag().toString());
                 }
 
                 @Override
