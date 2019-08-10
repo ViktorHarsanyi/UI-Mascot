@@ -1,5 +1,7 @@
 package com.vktrhrsny.uimascot;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.os.Looper;
 import android.view.View;
 import android.view.animation.Interpolator;
@@ -63,11 +65,23 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
         switch(animationCode) {
             case 1:
             case -1:
-               view.animate().setDuration(duration).rotation(360*animationCode);
+               view.animate().setDuration(duration).rotation(360*animationCode).setListener(new AnimatorListenerAdapter() {
+                   @Override
+                   public void onAnimationEnd(Animator animation) {
+                       super.onAnimationEnd(animation);
+                       view.animate().rotation(0);
+                   }
+               });
                 break;
             case 2:
-                view.animate().setDuration(duration).scaleX(2);
-                view.animate().setDuration(duration).scaleY(2);
+                view.animate().setDuration(duration).scaleX(2).scaleY(2).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                            view.animate().scaleY(0).scaleX(0);
+                    }
+                });
+
                 break;
         }
     }
