@@ -42,7 +42,7 @@ public class IdleMode implements MascotState {
             int y1 = place[1];
 
             int x0 = placeView[0];
-            int y0 = placeView[1];
+            int y0 = placeView[1]-mascotStateMachine.getView().getHeight();
 
             path.moveTo(x1, y1);
             path.lineTo(x0,y0);

@@ -41,7 +41,7 @@ public class TagMode implements MascotState {
             int y1 = place[1];
 
             int x0 = placeView[0];
-            int y0 = placeView[1];
+            int y0 = placeView[1]-mascotStateMachine.getView().getHeight();
 
             float X = (float)(x0 + x1) / 3;
             float Y = (float)(y0 + y1) / 3;
@@ -96,7 +96,7 @@ public class TagMode implements MascotState {
             float x1 = place[0];
             float y1 = place[1];
             float x0 = placeDestination[0];
-            float y0 = placeDestination[1]-mascotStateMachine.getView().getHeight();
+            float y0 = placeDestination[1];
 
             float X = (x0 + x1) / 3;
             float Y = (y0 + y1) / 3;

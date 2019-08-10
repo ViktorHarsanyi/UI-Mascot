@@ -19,7 +19,7 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
     private View view;
     private Interpolator interpolator;
     private Long duration;
-    private boolean isMirrored, isLooping;
+    private boolean isMirrored;
     private int animationCode;
 
     public static final int TAG_MODE = 1;
@@ -32,7 +32,7 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
 
 
 
-    private MascotStateMachine(View view,float screenWidth,Interpolator interpolator,Long duration,boolean isMirrored,int animationCode,boolean isLooping){
+    private MascotStateMachine(View view,float screenWidth,Interpolator interpolator,Long duration,boolean isMirrored,int animationCode){
 
         this.view = view;
         this.screenWidth = screenWidth;
@@ -40,7 +40,7 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
         this.duration = duration;
         this.isMirrored = isMirrored;
         this.animationCode = animationCode;
-        this.isLooping = isLooping;
+
         handler = new Handler(Looper.myLooper());
 
     }
@@ -102,8 +102,7 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
     public void run() {
         if(state instanceof RandomMoveMode || state instanceof IdleMode)
             state.move(null);
-        if(isLooping)
-            animate();
+
 
         handler.postDelayed(this, duration);
     }
@@ -151,7 +150,7 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
         private Interpolator interpolator;
         private View view;
         private float screenWidth;
-        private boolean isMirrored=true, isLooping=false;
+        private boolean isMirrored=true;
         private int animationCode=0;
 
         public Builder(@Nullable final View view,final float screenWidth){
@@ -174,14 +173,13 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
             return this;
         }
 
-        public Builder setAnimationType(int animationCode, boolean isLooping){
+        public Builder setAnimationType(int animationCode){
             this.animationCode = animationCode;
-            this.isLooping = isLooping;
             return this;
         }
 
         public MascotStateMachine build(){
-            return new MascotStateMachine(view,screenWidth,interpolator,duration,isMirrored,animationCode,isLooping);
+            return new MascotStateMachine(view,screenWidth,interpolator,duration,isMirrored,animationCode);
         }
 
     }
