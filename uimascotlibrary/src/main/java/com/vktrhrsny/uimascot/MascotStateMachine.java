@@ -89,7 +89,7 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
         if(state instanceof RandomMoveMode || state instanceof IdleMode)
             state.move(null);
         if(isLooping)
-            state.animate();
+            animate();
 
         handler.postDelayed(this, duration);
     }
