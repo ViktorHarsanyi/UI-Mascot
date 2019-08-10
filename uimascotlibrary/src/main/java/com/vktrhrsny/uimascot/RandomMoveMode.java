@@ -101,33 +101,6 @@ public class RandomMoveMode implements MascotState {
         }
     }
 
-    @Override
-    public void animate() {
-        switch(mascotStateMachine.getAnimationCode()) {
-            case 1:
-            case -1:
-                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).rotation(360*mascotStateMachine.getAnimationCode());
-                break;
-            case 2:
-                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).scaleX(2).scaleY(2)
-                        .withEndAction(new Runnable() {
-                            @Override
-                            public void run() {
-                                mascotStateMachine.getView().animate()
-                                        .setDuration(mascotStateMachine.getDuration()/2)
-                                        .scaleX(1)
-                                        .scaleY(1);
-                            }
-                        });
-
-                break;
-            default:
-                mascotStateMachine.getView().animate()
-                        .setDuration(mascotStateMachine.getDuration()/2)
-                        .scaleX(1)
-                        .scaleY(1);
-        }
-    }
 
     @Override
     public void talk(String text) {

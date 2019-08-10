@@ -96,7 +96,7 @@ public class TagMode implements MascotState {
             float x1 = place[0];
             float y1 = place[1];
             float x0 = placeDestination[0];
-            float y0 = placeDestination[1];
+            float y0 = placeDestination[1]-mascotStateMachine.getView().getHeight();
 
             float X = (x0 + x1) / 3;
             float Y = (y0 + y1) / 3;
@@ -115,19 +115,7 @@ public class TagMode implements MascotState {
         }
     }
 
-    @Override
-    public void animate() {
-        switch(mascotStateMachine.getAnimationCode()) {
-            case 1:
-            case -1:
-                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).rotation(360*mascotStateMachine.getAnimationCode());
-                break;
-            case 2:
-                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).scaleX(2);
-                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).scaleY(2);
-                break;
-        }
-    }
+
 
     @Override
     public void talk(String text) {

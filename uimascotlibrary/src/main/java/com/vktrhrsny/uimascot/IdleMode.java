@@ -87,19 +87,7 @@ public class IdleMode implements MascotState {
         }
     }
 
-    @Override
-    public void animate() {
-        switch(mascotStateMachine.getAnimationCode()) {
-            case 1:
-            case -1:
-                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).rotation(360*mascotStateMachine.getAnimationCode());
-                break;
-            case 2:
-                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).scaleX(2);
-                mascotStateMachine.getView().animate().setDuration(mascotStateMachine.getDuration()).scaleY(2);
-                break;
-        }
-    }
+
 
     @Override
     public void talk(String text) {

@@ -60,7 +60,7 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
         state.move(x,y);
     }
 
-    @Override
+
     public void animate() {
         switch(animationCode) {
             case 1:
