@@ -93,13 +93,13 @@ public class TagMode implements MascotState {
             int[] placeDestination = new int[]{x,y};
             mascotStateMachine.getView().getLocationOnScreen(place);
 
-            int x1 = place[0];
-            int y1 = place[1];
-            int x0 = placeDestination[0];
-            int y0 = placeDestination[1];
+            float x1 = place[0];
+            float y1 = place[1];
+            float x0 = placeDestination[0];
+            float y0 = placeDestination[1];
 
-            float X = (float)(x0 + x1) / 3;
-            float Y = (float)(y0 + y1) / 3;
+            float X = (x0 + x1) / 3;
+            float Y = (y0 + y1) / 3;
 
             path.moveTo(x1, y1);
             path.quadTo(X, Y, x0, y0);
