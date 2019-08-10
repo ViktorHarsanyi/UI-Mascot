@@ -60,7 +60,16 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
 
     @Override
     public void animate() {
-        state.animate();
+        switch(animationCode) {
+            case 1:
+            case -1:
+               view.animate().setDuration(duration).rotation(360*animationCode);
+                break;
+            case 2:
+                view.animate().setDuration(duration).scaleX(2);
+                view.animate().setDuration(duration).scaleY(2);
+                break;
+        }
     }
 
     @Override
