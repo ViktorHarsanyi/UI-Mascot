@@ -32,12 +32,17 @@ public class IdleMode implements MascotState {
 
     @Override
     public void move(@Nullable View view) {
-        if(mascotStateMachine!=null&&view!=null){
+        if(mascotStateMachine!=null){
             talk("");
             int[] place = new int[2];
             int[] placeView = new int[2];
             mascotStateMachine.getView().getLocationOnScreen(place);
+
+            if(view!=null)
             view.getLocationOnScreen(placeView);
+            else
+            mascotStateMachine.getIdleDestinationView().getLocationOnScreen(placeView);
+
             int x1 = place[0];
             int y1 = place[1];
 
