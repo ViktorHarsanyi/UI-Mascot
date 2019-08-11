@@ -152,13 +152,14 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
         private Long duration;
         private Interpolator interpolator;
         private View view;
-        private View idleDestinationView = view;
+        private View idleDestinationView;
         private float screenWidth;
         private boolean isMirrored=true;
         private int animationCode=0;
 
         public Builder(@Nullable final View view,final float screenWidth){
             this.view = view;
+            idleDestinationView = view;
             this.screenWidth = screenWidth;
         }
 
