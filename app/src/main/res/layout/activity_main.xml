@@ -58,7 +58,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:onClick="moveTo100"
-            android:text="@string/move_to_100_100"
+            android:text="@string/move_to_x_y"
             tools:ignore="ButtonStyle" />
 
         <Button
@@ -79,7 +79,7 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -102,7 +102,7 @@
         <Spinner
             android:id="@+id/spinner1"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/txtVw"
             android:layout_toEndOf="@+id/txtVw" />
     </RelativeLayout>

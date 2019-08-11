@@ -33,16 +33,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mascot = new MascotStateMachine.Builder(findViewById(R.id.mascot),width)
                 .setInterpolator(new OvershootInterpolator())
                 .setDuration(2000L)
-                .setAnimationType(MascotStateMachine.ROTATE_CW,true)
+                .setAnimationType(MascotStateMachine.ROTATE_CCW)
                 .setMirrored(true)
                 .build();
 
          /*call run() for:
-            +looping animation if isLoop true
+
             +Idle Mode to move around specified view or point
             +Random Mode to move around the screen
+            *** if state set to other then Random Mode
+            * callback removed
+            * delay give in setDuration method of the builder
+
         */
-        //mascot.setState(MascotStateMachine.RANDOM_MODE);
         mascot.run();
 
     }

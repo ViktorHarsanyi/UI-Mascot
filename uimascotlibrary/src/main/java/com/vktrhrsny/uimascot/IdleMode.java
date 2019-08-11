@@ -47,10 +47,11 @@ public class IdleMode implements MascotState {
             int y1 = place[1];
 
             int x0 = placeView[0];
-            int y0 = placeView[1];//-mascotStateMachine.getView().getHeight();
+            int y0 = placeView[1];
 
-            path.moveTo(x1, y1);
-            path.lineTo(x0,y0);
+
+            path.moveTo(x1, y0);
+            path.lineTo(x0,y0-mascotStateMachine.getView().getHeight());
             Animator animator = ObjectAnimator.ofFloat(mascotStateMachine.getView(), View.X, View.Y, path);
             animator.setDuration(mascotStateMachine.getDuration());
             animator.setInterpolator(mascotStateMachine.getInterpolator());
