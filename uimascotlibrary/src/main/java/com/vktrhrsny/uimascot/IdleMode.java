@@ -44,7 +44,7 @@ public class IdleMode implements MascotState {
             mascotStateMachine.getIdleDestinationView().getLocationOnScreen(placeView);
 
             int x1 = place[0];
-            //int y1 = place[1];
+            
 
             int x0 = placeView[0];
             int y0 = placeView[1];
