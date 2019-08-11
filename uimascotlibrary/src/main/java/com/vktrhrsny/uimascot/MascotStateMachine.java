@@ -79,7 +79,7 @@ public class MascotStateMachine implements MascotState,Runnable, View.OnClickLis
                     @Override
                     public void onAnimationEnd(Animator animation) {
                         super.onAnimationEnd(animation);
-                            view.animate().scaleY(0).scaleX(0);
+                            view.animate().scaleY(1).scaleX(1);
                     }
                 });
 
