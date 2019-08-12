@@ -10,8 +10,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:tag="blabla"
-        android:text="Hello World!"
+        android:tag="Tag Read"
+        android:background="@drawable/ic_launcher_background"
+        android:text="@string/target_view"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -25,7 +26,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-
         android:background="@drawable/ic_launcher_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +57,7 @@
         <Button
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:onClick="moveTo100"
+            android:onClick="moveToXY"
             android:text="@string/move_to_x_y"
             tools:ignore="ButtonStyle" />
 

@@ -5,4 +5,5 @@
     <string name="text">Text</string>
     <string name="trigger_animation">Animate</string>
     <string name="set_state">Set State:</string>
+    <string name="target_view">Target View</string>
 </resources>
